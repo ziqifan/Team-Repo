@@ -15,10 +15,10 @@ public class spawnObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //this will spawn one thing for each time you press the button, i might switch it to some particle effect idk
+        //need to turn this into an array 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            Instantiate(box); 
+            Instantiate(box);
         }
     }
 }

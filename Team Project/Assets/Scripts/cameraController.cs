@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//code referenced from https://learn.unity.com/tutorial/movement-basics?projectId=5c514956edbc2a002069467c#5c7f8528edbc2a002053b711
+
 public class cameraController : MonoBehaviour
 {
 
