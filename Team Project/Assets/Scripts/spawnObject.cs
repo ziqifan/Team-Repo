@@ -16,6 +16,7 @@ public class spawnObject : MonoBehaviour
     void Update()
     {
         //need to turn this into an array 
+        //also RIP this isnt the factory design pattern idont think? 
         if (Input.GetKeyDown(KeyCode.X))
         {
             Instantiate(box);

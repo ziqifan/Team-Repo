@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-       isGrounded = true;
+        isGrounded = true;
     }
     void Update()
     {
@@ -24,6 +24,15 @@ public class Movement : MonoBehaviour
         {
             rb.AddForce(new Vector3(0, 0.5f, 0), ForceMode.Impulse);
             isGrounded = false;
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name == "invisibleTop")
+        {
+            //Destroy(col.gameObject);
+            Debug.Log("you win");
         }
     }
 }
