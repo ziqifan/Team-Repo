@@ -31,7 +31,6 @@ public class Movement : MonoBehaviour
     {
         if (col.gameObject.name == "invisibleTop")
         {
-            //Destroy(col.gameObject);
             Debug.Log("you win");
         }
     }
