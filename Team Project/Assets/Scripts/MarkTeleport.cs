@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-public class MarkTeleport : MonoBehaviour
+public class MarkTeleport : MonoBehaviour, ITeleport
 {
     const string DLL_NAME = "Individual A1 VS";
 
@@ -19,12 +19,10 @@ public class MarkTeleport : MonoBehaviour
     [DllImport(DLL_NAME)]
     private static extern float loadPositionZ();
 
-    ObjectPooler objectPooler;
-
     // Start is called before the first frame update
     void Start()
     {
-        objectPooler = ObjectPooler.Instance;
+
     }
 
     // Update is called once per frame
@@ -36,8 +34,20 @@ public class MarkTeleport : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            objectPooler.SpawnObject("Teleport", transform.position, Quaternion.identity);
-            Debug.Log(savePosition(transform.position.x, transform.position.y, transform.position.z));
+            CommandProcessor.ExcuteCommand(this, transform.position);
+        }
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            CommandProcessor.Undo();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            CommandProcessor.Redo();
         }
     }
+}
+
+public interface ITeleport
+{
+    Transform transform { get; }
 }
