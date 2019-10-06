@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float speed = 10.0f;
-    public float JumpHeight = 20.0f;
+    public float maxSpeed = 10.0f;
+    public float jumpHeight = 250.0f;
     public bool isGrounded;
 
     Rigidbody rb;
@@ -23,16 +23,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float translation = Input.GetAxis("Vertical") * speed;
-        float straffe = Input.GetAxis("Horizontal") * speed;
-        translation *= Time.deltaTime;
-        straffe *= Time.deltaTime;
+        float z = Input.GetAxis("Vertical") * maxSpeed * Time.deltaTime;
+        float x = Input.GetAxis("Horizontal") * maxSpeed * Time.deltaTime;
 
-        transform.Translate(straffe, 0, translation);
+        transform.Translate(x, 0, z);
 
         if (Input.GetKey(KeyCode.Space) && isGrounded == true)
         {
-            rb.AddForce(0, JumpHeight, 0);
+            rb.AddForce(0, jumpHeight, 0);
             isGrounded = false;
         }
     }
