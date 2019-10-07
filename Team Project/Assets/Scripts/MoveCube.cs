@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveCube : MonoBehaviour
 {
+    //Hold left mouse to pick up the object select by mouse
     void OnMouseDown()
     {
         GetComponent<BoxCollider>().enabled = false;
@@ -12,6 +13,7 @@ public class MoveCube : MonoBehaviour
         this.transform.parent = GameObject.Find("Destination").transform;
     }
 
+    //Release left mouse to drop the object
     void OnMouseUp()
     {
         this.transform.parent = null;

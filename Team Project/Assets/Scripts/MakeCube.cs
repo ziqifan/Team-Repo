@@ -8,15 +8,11 @@ public class MakeCube : MonoBehaviour
     private int type;
     private float x;
     private float z;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
+        //Press F to make a random cube to randome position
         if (Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log(transform.position);

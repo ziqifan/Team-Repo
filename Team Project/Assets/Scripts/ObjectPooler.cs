@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
+    //a pool for a game object with certain size
     [System.Serializable]
     public class Pool
     {
@@ -23,12 +24,14 @@ public class ObjectPooler : MonoBehaviour
 
     #endregion
 
+    //Create the list and dictionary for the pool
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDict;
 
     // Start is called before the first frame update
     void Start()
     {
+        //put all pools into pool dictionary
         poolDict = new Dictionary<string, Queue<GameObject>>();
 
         foreach(Pool pool in pools)
@@ -46,6 +49,7 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    //using certain pool inside the pool dictionary to spawn object
     public GameObject SpawnObject (string tag, Vector3 pos, Quaternion rot)
     {
         if(!poolDict.ContainsKey(tag))

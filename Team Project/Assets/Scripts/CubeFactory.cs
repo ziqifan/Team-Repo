@@ -24,13 +24,17 @@ public class CubeFactory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //assign cube type to static cube
         CubeOne = cubeOne;
         CubeTwo = cubeTwo;
         CubeThree = cubeThree;
         CubeFour = cubeFour;
         CubeFive = cubeFive;
 
-        var factoryTypes = Assembly.GetAssembly(typeof(CubeMaker)).GetTypes().Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(CubeMaker)));
+        //initialize cube maker
+        var factoryTypes = Assembly.GetAssembly(typeof(CubeMaker)).GetTypes().
+            Where(myType => myType.IsClass && !myType.IsAbstract && myType.
+            IsSubclassOf(typeof(CubeMaker)));
 
         factoryDict = new Dictionary<int, Type>();
 
@@ -41,6 +45,7 @@ public class CubeFactory : MonoBehaviour
         }
     }
 
+    //use cube maker to make certain type cube at certain position with certain rotation
     public static CubeMaker MakeCube(int cubeType, Vector3 possition, Quaternion rotation)
     {
         if(factoryDict.ContainsKey(cubeType))
@@ -52,12 +57,8 @@ public class CubeFactory : MonoBehaviour
         }
         return null;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
+    //Cube maker contain a function could spawn cube
     public abstract class CubeMaker
     {
         public abstract int Name { get; }

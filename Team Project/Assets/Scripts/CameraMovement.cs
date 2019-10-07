@@ -21,12 +21,15 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Move camera by the mouse movement, and use sentivity and smooth to achieve better performance
         var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
 
         md = Vector2.Scale(md, new Vector2(sensitivity * smoothness, sensitivity * smoothness));
         smoothValue.x = Mathf.Lerp(smoothValue.x, md.x, 1.0f / smoothness);
         smoothValue.y = Mathf.Lerp(smoothValue.y, md.y, 1.0f / smoothness);
         mousePosition += smoothValue;
+
+        //Clamp camera not go above head or below feet
         mousePosition.y = Mathf.Clamp(mousePosition.y, -90.0f, 90.0f);
 
         transform.localRotation = Quaternion.AngleAxis(-mousePosition.y, Vector3.right);
